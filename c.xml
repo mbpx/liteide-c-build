@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Simple C compiling config \ by p-artisan \ not intended for use in large projects -->
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+	<mime-type type="text/x-csrc" id="c" work="$(BUILD_DIR_PATH)" lock="dir" ver="2">
+		<config id="GoTools" name="GOTOOLS" value="$(LITEIDE_TOOL_PATH)/gotools"/>
+		<config id="cc" name="CC" value="gcc"/>
+		<config id="ErrRegex" name="ERRREGEX" value="((?:[a-zA-Z]:)?[\w\d_\-\\\/\.]+):(\d+)\b"/>
+		<custom id="TargetArgs" name="TARGETARGS" value=""/>
+		<custom id="SourceName" name="SOURCENAME" value="$(EDITOR_FILE_NAME)" readonly="true" escaped="true"/>
+		<custom id="TargetName" name="TARGETNAME" value="$(SOURCENAME).out" readonly="true" escaped="true"/>
+		<custom id="BuildArgs" name="BUILDARGS" value="-o $(TARGETNAME)"/>
+		<!-- Actions -->
+		<action id="Build" img="build.png" key="Ctrl+B" cmd="$(CC)" args="$(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+		<action id="Build C90" menu="Build" img="clean.png" key="Ctrl+Alt+B" cmd="$(CC)" args="-std=c90 -pedantic-errors $(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+		<action id="Build C99" menu="Build" img="clean.png" cmd="$(CC)" args="-std=c99 -pedantic-errors $(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+		<action id="Build C11" menu="Build" img="clean.png" cmd="$(CC)" args="-std=c11 -pedantic-errors $(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+		
+		<action id="Build C++03" menu="Build" img="clean.png" cmd="$(CC)" args="-std=c++03 -pedantic-errors $(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+		<action id="Build C++14" menu="Build" img="clean.png" cmd="$(CC)" args="-std=c++14 -pedantic-errors $(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+		<action id="Build C++17" menu="Build" img="clean.png" cmd="$(CC)" args="-std=c++17 -pedantic-errors $(BUILDARGS) $(SOURCENAME)" save="all" output="true" codec="utf-8" regex="$(ERRREGEX)" navigate="true"/>
+
+		<action id="Run" img="run.png" key="F7; Ctrl+Alt+R" cmd="$(TARGETNAME)" args="$(TARGETARGS)" output="true" codec="utf-8" readline="true"/>
+		<action id="BuildAndRun" img="buildrun.png" key="Ctrl+R; Ctrl+F7" task="Build;Run" killold="true"/>
+	</mime-type>
+</mime-info>
